@@ -1,13 +1,11 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Timeline;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int maxHealth = 3;
-    public int health = 3;
+    public int maxHealth = 100;
+    public int health = 100;
     private void Awake()
     {
         //singleton
@@ -24,9 +22,9 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 60; //Limita el juego a 60frames
     }
-    public void ModifyHealth(int amount)
+    public void ModifyHealth(int amount) //Metodo para sumar o restar vida al jugador
     {
         health += amount;
         Debug.Log("Health: " + health + " / " + maxHealth);
@@ -34,7 +32,7 @@ public class GameManager : MonoBehaviour
         {
             health = maxHealth;
         }
-        if (health <= 0)
+        if (health <= 0) //Verifica si el jugador tiene 0 o menos vida y termina el juegp
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;

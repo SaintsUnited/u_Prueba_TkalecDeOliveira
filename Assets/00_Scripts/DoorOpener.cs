@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class DoorOpener : MonoBehaviour
+public class DoorOpener : MonoBehaviour, Interactables
 {
-   private PlayerInteractions playerInteractions;
-    public bool isAnimating = false;
+    private PlayerInteractions playerInteractions;
+    public bool isAnimating;
     private bool isOpen;
     [SerializeField] private GameObject doorPivot;
     [SerializeField] private float rotation = -90;
@@ -20,6 +20,17 @@ public class DoorOpener : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Interactable");
         closedRotation = doorPivot.transform.rotation;
         openRotation = Quaternion.Euler(0, rotation, 0) * closedRotation;
+    }
+    public void Interact()
+    {
+        if (!isAnimating)
+        {
+            ToggleDoor();
+        }
+    }
+    public string GetInteractionText()
+    {
+        return isOpen ? "Press [E] to close the door" : "Press [E] to open the door";
     }
     public void ToggleDoor()
     {

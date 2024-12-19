@@ -6,25 +6,33 @@ public class EnemyAttackController : MonoBehaviour
    [SerializeField] private GameObject enemy;
    [SerializeField] private GameObject rangeZone;
    [SerializeField] private GameObject damageUI;
+   [SerializeField] private int damage = -25;
+   [SerializeField] private int attackCooldown = 2;
+   
    private IEnumerator dealDamage;
-   private int damage = -1;
-   private int attackCooldown = 2;
+   
+   private Animator animator;
    private void Start()
    {
-      dealDamage = DealDamage();
+      animator = enemy.GetComponent<Animator>();
    }
    private void OnTriggerEnter(Collider other)
    {
       if (other.CompareTag("Player"))
       {
-         StartCoroutine(dealDamage);
+         animator.SetBool("isAttacking", true);
+         if (animator.GetBool("isAttacking"))
+         {
+            StartCoroutine("DealDamage");
+         }
       }
    }
    private void OnTriggerExit(Collider other)
    {
       if (other.CompareTag("Player"))
       {
-         StopCoroutine(dealDamage);
+         StopCoroutine("DealDamage");
+         animator.SetBool("isAttacking", false);
          damageUI.SetActive(false);
          Debug.Log("Stopping Coroutine dealDamage()");
       }

@@ -1,44 +1,23 @@
-using System.Collections;
 using UnityEngine;
 
-public class HealingScript : MonoBehaviour
+public class HealingScript : MonoBehaviour, Interactables
 {
-   [SerializeField] private GameObject healingTrigger;
-   [SerializeField] private GameObject recoveryUI;
-   [SerializeField] private int healingAmount = 1;
-   private IEnumerator recoveryCoroutine;
+   [SerializeField] private int healAmount;
+
    private void Start()
    {
-      recoveryCoroutine = HealingCoroutine();
+      gameObject.layer = LayerMask.NameToLayer("Interactable");
    }
-   private void OnTriggerEnter(Collider other)
+   public void Interact()
    {
-      if (other.CompareTag("Player"))
-      {
-         Debug.Log("Entering healing zone");
-         StartCoroutine(recoveryCoroutine);
-      }
+      OnHealingObjectUsed();
    }
-
-   private void OnTriggerExit(Collider other)
+   public string GetInteractionText()
    {
-      if (other.CompareTag("Player"))
-      { 
-         StopCoroutine(recoveryCoroutine);
-         recoveryUI.SetActive(false);
-         Debug.Log("recoveryCoroutine() stopped.");
-      }
+      return "Press [E] to use";
    }
-   private IEnumerator HealingCoroutine()
+   private void OnHealingObjectUsed()
    {
-      while (GameManager.instance.health > 0  && GameManager.instance.health != GameManager.instance.maxHealth)
-      {
-         GameManager.instance.ModifyHealth(healingAmount);
-         Debug.Log("recoveryCoroutine() healed " + healingAmount);
-         recoveryUI.SetActive(true);
-         yield return new WaitForSeconds(1);
-         recoveryUI.SetActive(false);
-         yield return new WaitForSeconds(1);
-      }
+      GameManager.instance.ModifyHealth(healAmount);
    }
 }
