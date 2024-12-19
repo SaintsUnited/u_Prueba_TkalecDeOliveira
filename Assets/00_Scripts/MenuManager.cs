@@ -22,20 +22,20 @@ public class MenuManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene("Main_Menu");
-        GameManager.instance.health = GameManager.instance.maxHealth;
+        SceneManager.LoadScene("Main_Menu"); 
+        GameManager.instance.health = GameManager.instance.maxHealth; //establece la vida al 100%
     }
     private void PlayButton()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        SceneManager.LoadScene("Asylum");
+        Cursor.visible = false; //desactiva la visibilidad del cursor
+        Cursor.lockState = CursorLockMode.Locked; //bloquea el raton al centro de la pantalla
+        SceneManager.LoadScene("Asylum"); //carga la escena "Asylum"
     }
     private void RestartButton()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        GameManager.instance.health = GameManager.instance.maxHealth;
+        GameManager.instance.health = GameManager.instance.maxHealth; //establece la vida al 100%
         SceneManager.LoadScene("Asylum");
     }
 }

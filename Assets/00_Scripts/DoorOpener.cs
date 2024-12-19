@@ -7,7 +7,7 @@ public class DoorOpener : MonoBehaviour, Interactables
     public bool isAnimating;
     private bool isOpen;
     [SerializeField] private GameObject doorPivot;
-    [SerializeField] private float rotation = -90;
+    [SerializeField] private float rotation = -90f;
     [SerializeField] private float rotationSpeed = 2f;
    
     private Quaternion closedRotation;

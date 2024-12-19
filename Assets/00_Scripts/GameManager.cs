@@ -34,9 +34,9 @@ public class GameManager : MonoBehaviour
         }
         if (health <= 0) //Verifica si el jugador tiene 0 o menos vida y termina el juegp
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene("Game_Over");
+            Cursor.visible = true; //hace visible el cursos
+            Cursor.lockState = CursorLockMode.None; //Desbloquea el uso del cursor
+            SceneManager.LoadScene("Game_Over"); //Carga la escena "Game Over"
         }
     }
 }
