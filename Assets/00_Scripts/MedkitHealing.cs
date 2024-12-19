@@ -8,7 +8,6 @@ public class MedkitHealing : MonoBehaviour, Interactables
     private void Start()
     {
         gameObject.layer = LayerMask.NameToLayer("Interactable");
-        healAmount = GameManager.instance.maxHealth;
     }
     public void Interact()
     {
@@ -23,6 +22,7 @@ public class MedkitHealing : MonoBehaviour, Interactables
     }
     private void OnHealingObjectUsed()
     {
+        healAmount = GameManager.instance.maxHealth - GameManager.instance.health;
         StartCoroutine(LittleHealing());
     }
     private IEnumerator LittleHealing()
