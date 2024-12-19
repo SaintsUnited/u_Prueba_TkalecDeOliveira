@@ -23,12 +23,12 @@ public class DoorOpener : MonoBehaviour, Interactables
     }
     public void Interact()
     {
-        if (!isAnimating)
+        if (!isAnimating) //si no esta animando ya, entonces permite que se anime
         {
             ToggleDoor();
         }
     }
-    public string GetInteractionText()
+    public string GetInteractionText() //Analiza cual texto mostrar dependiendo de si la puerta esta abierta o no
     {
         return isOpen ? "Press [E] to close the door" : "Press [E] to open the door";
     }

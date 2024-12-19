@@ -3,10 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 public class HealthBarController : MonoBehaviour
 {
-    private GameManager gameManager;
+    private GameManager gameManager; //referencia al gamemanager
     [SerializeField] private Scrollbar healthBar;
-    //velocidad de animacion
-    [SerializeField] private float animationDuration = 0.2f;
+    [SerializeField] private float animationDuration = 0.2f; //velocidad de animacion
     private float targetHealth;
 
     private void Start()
@@ -25,9 +24,9 @@ public class HealthBarController : MonoBehaviour
     }
     private IEnumerator AnimateHealthBar(float targetHealth) //Anima la barra de vida
     {
-        while (Mathf.Abs(targetHealth - healthBar.size) > 0.01f)
+        while (Mathf.Abs(targetHealth - healthBar.size) > 0.01f) //calcula la diferencia entre el tamaño de la healthbar y el valor que se debe alcanzar en valores absolutos
         {
-            healthBar.size = Mathf.Lerp(healthBar.size, targetHealth, animationDuration * Time.deltaTime);
+            healthBar.size = Mathf.Lerp(healthBar.size, targetHealth, animationDuration * Time.deltaTime); //interpola el tamaño actual de la health bar hasta el el valor destinado
             yield return null;
         }
         healthBar.size = targetHealth;

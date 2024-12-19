@@ -7,7 +7,7 @@ public class MedkitHealing : MonoBehaviour, Interactables
     [SerializeField] private GameObject healingGUIObject;
     private void Start()
     {
-        gameObject.layer = LayerMask.NameToLayer("Interactable");
+        gameObject.layer = LayerMask.NameToLayer("Interactable"); //autoasigna la Layer del objeto a la layer "Interactable"
     }
     public void Interact()
     {
@@ -16,16 +16,16 @@ public class MedkitHealing : MonoBehaviour, Interactables
             OnHealingObjectUsed();
         }
     }
-    public string GetInteractionText()
+    public string GetInteractionText() //Texto a mostrar
     {
         return "Press [E] to use";
     }
-    private void OnHealingObjectUsed()
+    private void OnHealingObjectUsed() //Calcula cuanta vida se necesita para llenarla toda
     {
         healAmount = GameManager.instance.maxHealth - GameManager.instance.health;
         StartCoroutine(LittleHealing());
     }
-    private IEnumerator LittleHealing()
+    private IEnumerator LittleHealing() //Animacion de activar y desactivar la GUI de curar.
     {
         GameManager.instance.ModifyHealth(healAmount);
         Debug.Log("Activating Feedback...");

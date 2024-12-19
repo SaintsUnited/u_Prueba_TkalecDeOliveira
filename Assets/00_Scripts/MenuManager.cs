@@ -3,17 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public void OnMainMenuButtonClicked()
+    public void OnMainMenuButtonClicked() //cambia la escena a la del menu principal luego de 2 seg
     {
         Debug.Log("Going to main menu, 2s Left...");
         Invoke(nameof(MainMenu), 2f);
     }
-    public void OnRestartButtonClicked()
+    public void OnRestartButtonClicked() //reinicia la escena "Asylum" despues de 2 seg
     {
         Debug.Log("Restarting Game. 2s Left...");
         Invoke(nameof(RestartButton), 2f);
     }
-    public void OnPlayButtonClicked()
+    public void OnPlayButtonClicked() //cambia la escena a la de "Asylum" despues de 2 seg
     {
         Debug.Log("Initializing. 2s Left...");
         Invoke(nameof(PlayButton), 2f);

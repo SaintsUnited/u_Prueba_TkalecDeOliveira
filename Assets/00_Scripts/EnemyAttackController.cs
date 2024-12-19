@@ -6,8 +6,8 @@ public class EnemyAttackController : MonoBehaviour
    [SerializeField] private GameObject enemy;
    [SerializeField] private GameObject rangeZone;
    [SerializeField] private GameObject damageUI;
-   [SerializeField] private int damage = -25;
-   [SerializeField] private int attackCooldown = 2;
+   [SerializeField] private int damage = -25; //cuanta vida quita el enemigo
+   [SerializeField] private int attackCooldown = 2; //tiempo que tarda en volver a atacar
    
    private IEnumerator dealDamage;
    
@@ -18,7 +18,7 @@ public class EnemyAttackController : MonoBehaviour
    }
    private void OnTriggerEnter(Collider other)
    {
-      if (other.CompareTag("Player"))
+      if (other.CompareTag("Player")) //activa la animacion de atacar si el jugador entra en el alcance
       {
          animator.SetBool("isAttacking", true);
          if (animator.GetBool("isAttacking"))
@@ -29,7 +29,7 @@ public class EnemyAttackController : MonoBehaviour
    }
    private void OnTriggerExit(Collider other)
    {
-      if (other.CompareTag("Player"))
+      if (other.CompareTag("Player")) //desactiva la animacion cuando el jugador sale del alcance
       {
          StopCoroutine("DealDamage");
          animator.SetBool("isAttacking", false);
@@ -37,7 +37,7 @@ public class EnemyAttackController : MonoBehaviour
          Debug.Log("Stopping Coroutine dealDamage()");
       }
    }
-   private IEnumerator DealDamage()
+   private IEnumerator DealDamage() //corrutina que resta vida al jugador mientras aun este vivo (vida >0)
    {
       while(GameManager.instance.health > 0)
       {
